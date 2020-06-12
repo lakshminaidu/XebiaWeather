@@ -22,7 +22,6 @@ struct WeatherResponseViewModel {
     
     
     init(with resonseModel: WeatherResponse) {
-        
         city = resonseModel.name ?? ""
         country = resonseModel.sys.country ?? ""
         location = city + ", " + country

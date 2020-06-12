@@ -13,20 +13,17 @@ import CoreLocation
 
 internal let Token = "564799b60389a0358bade7d74899c4e6"
 internal let emptyString = ""
+let maximumCities = 7
+let minimumCities = 3
 
 // MARK: - AppError constants
-struct AppError {
-    enum Code: Int {
-        case urlError                 = -6000
-        case networkRequestFailed     = -6001
-        case jsonSerializationFailed  = -6002
-        case jsonParsingFailed        = -6003
-        case unableToFindLocation     = -6004
-    }
-    
-    let errorCode: Code
+enum AppError: Error {
+    case urlError
+    case networkRequestFailed
+    case jsonSerializationFailed
+    case jsonParsingFailed
+    case unableToFindLocation
 }
-
 
 // MARK: - WeatherAPI constants
 enum WeatherFetchType: Int {
@@ -59,7 +56,6 @@ struct WeatherAPI {
         let lat = String(loc.coordinate.latitude)
         let long = String(loc.coordinate.longitude)
         return  WeatherAPI.with(lattitude: lat, and: long, isForecast: isForecast)
-        
     }
     
 }

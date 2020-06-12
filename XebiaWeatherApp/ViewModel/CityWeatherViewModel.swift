@@ -16,22 +16,27 @@ class CityWeatherViewModel {
         self.cities = cities
     }
     
-    
     func fetchWeather(completion: @escaping ((Bool) -> Void)) {
-        let cityUrls = self.cities.map{URL(string: WeatherAPI.with(city: $0.trim()).urlEncoded!)!}
         var citiesCount = cities.count
-        cityUrls.forEach { (cityApi) in
-            WeatherService.Global.fetch(withURL: cityApi) { [weak self] (result: Envelope<WeatherResponse>) in
+        cities.forEach { (city) in
+            requestWeather(city: city) {
                 citiesCount -= 1
-                switch result {
-                case .success(let weatherResponseModel):
-                    let viewModel = WeatherResponseViewModel(with: weatherResponseModel)
-                    self?.weatherData.append(viewModel)
-                    if citiesCount == 0 {
-                        completion(true)
-                    }
-                default: break
+                if citiesCount == 0 {
+                    completion(true)
                 }
+            }
+        }
+    }
+    
+    func requestWeather(city: String, completion: @escaping (() -> Void)) {
+        WeatherService.Global.request(withURL: URL(string: WeatherAPI.with(city: city.trim()).urlEncoded!)!) { [weak self] (result: Envelope<WeatherResponse>) in
+            switch result {
+            case .success(let weatherResponseModel):
+                let viewModel = WeatherResponseViewModel(with: weatherResponseModel)
+                self?.weatherData.append(viewModel)
+                completion()
+            case .failure(_):
+                completion()
             }
         }
     }

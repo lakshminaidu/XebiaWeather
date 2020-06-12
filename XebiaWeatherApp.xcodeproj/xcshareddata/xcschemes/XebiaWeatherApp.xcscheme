@@ -26,13 +26,24 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4049B78824896F74007D541A"
+            BuildableName = "XebiaWeatherApp.app"
+            BlueprintName = "XebiaWeatherApp"
+            ReferencedContainer = "container:XebiaWeatherApp.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4049B79E24896F77007D541A"
+               BlueprintIdentifier = "4049B82B2493C9EC007D541A"
                BuildableName = "XebiaWeatherAppUITests.xctest"
                BlueprintName = "XebiaWeatherAppUITests"
                ReferencedContainer = "container:XebiaWeatherApp.xcodeproj">

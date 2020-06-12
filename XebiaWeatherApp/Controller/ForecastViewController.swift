@@ -16,8 +16,8 @@ class ForecastViewController: BaseViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
+        tableView.rowHeight = 170
         startUserLocationService()
-
         // Do any additional setup after loading the view.
     }
     
@@ -62,15 +62,6 @@ extension ForecastViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.weatherData.keys.sorted()[section].formatDate()
     }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
-    
 }
 
 extension ForecastViewController: UITableViewDelegate {
@@ -96,7 +87,7 @@ extension ForecastViewController: LocationServiceDelegate {
     }
     
     func locationDidFail(withError error: AppError) {
-        switch error.errorCode {
+        switch error {
         case .unableToFindLocation:
           showOkAlert(with: "Location Error", message: "Please enable location services")
         default:
@@ -134,10 +125,6 @@ extension ForecastDayCell: UICollectionViewDelegate, UICollectionViewDelegateFlo
         } else {
             return UICollectionViewCell()
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
     }
     
 }

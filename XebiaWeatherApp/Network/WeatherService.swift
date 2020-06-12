@@ -11,64 +11,55 @@ import UIKit
 
 typealias Envelope<T: Codable> = Result<T>
 
-enum Result <T>{
+enum Result <T: Codable>{
     case success(T)
-    case error(reason: String)
+    case failure(AppError)
 }
 
+protocol WeatherServiceType: class {
+    func request<T: Codable>(withURL url: URL, completion: @escaping (Envelope<T>) -> ())
+}
+
+
 /// Manager for handling all REST API calls
-final class WeatherService {
-    
-    static let Global = WeatherService ()
-    
-    private let reachability = Reachability()
-    
-    private var isConnectedToInternet: Bool {
-        return Reachability.isConnectedToNetwork()
-    }
+final class WeatherService: WeatherServiceType {
+    var session: URLSession
+    static let Global = WeatherService()
     //1 creating the session
-    private let session: URLSession
     
-    init(configuration: URLSessionConfiguration) {
+    init() {
+        let configuration = URLSessionConfiguration.default
+        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        configuration.timeoutIntervalForRequest = 50
+        configuration.httpMaximumConnectionsPerHost = 100
         configuration.timeoutIntervalForRequest = 60.00
         self.session = URLSession(configuration: configuration)
     }
     
-    convenience init() {
-        self.init(configuration: .default)
-    }
-    
     //Data call with request
-
-    func fetch<T: Codable>(withURL url: URL, completionHandler completion: @escaping (Envelope<T>) -> ()) {
+    func request<T: Codable>(withURL url: URL, completion: @escaping (Envelope<T>) -> ()) {
         print("Service URL: \(url)")
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = session.dataTask(with: url) { (data, response, error) in
             guard error == nil, let httpResponse = response as? HTTPURLResponse  else {
-                completion(.error(reason:"Network is not avialable"))
+                completion(.failure(.networkRequestFailed))
                 return
             }
             if httpResponse.statusCode == 200, let responsedata = data {
                 do {
                     let weatherResponseModel = try JSONDecoder().decode(T.self, from: responsedata)
                     DispatchQueue.main.async {
-                        print("response finished")
                         completion(.success(weatherResponseModel))
                     }
                 } catch let error {
-                    print("Response Json Error")
                     print(error.localizedDescription)
-                    completion(.error(reason: "Response is not valid"))
+                    completion(.failure(.jsonParsingFailed))
                 }
                 
             } else {
-                completion(.error(reason: "Response is not valid"))
+                completion(.failure(.networkRequestFailed))
                 print("\(String(describing: error))")
             }
         }
         task.resume()
     }
-    
-
-    
-   
 }

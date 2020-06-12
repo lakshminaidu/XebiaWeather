@@ -20,10 +20,10 @@ class HomeViewController: UIViewController {
     }
     // MARK: IBActions
     @IBAction func showWeatherAction(sender: UIButton) {
-        let cities = textView.text.trim().components(separatedBy: ",")
-        if cities.count < 3 {
+        let cities = cityNames(from: textView.text)
+        if cities.count < minimumCities {
             showOkAlert(with: "Alert", message: "Please enter minimum 3 cities")
-        } else if cities.count > 7 {
+        } else if cities.count > maximumCities {
             showOkAlert(with: "Alert", message: "Please enter maximum 7 cities")
         } else {
             let controller = self.storyboard?.instantiateViewController(identifier: CityWeatherController.name ) as! CityWeatherController
@@ -35,12 +35,17 @@ class HomeViewController: UIViewController {
     @IBAction func currentLocationAction(sender: UIButton) {
         let controller = self.storyboard?.instantiateViewController(identifier: ForecastViewController.name ) as! ForecastViewController
         self.navigationController?.pushViewController(controller, animated: true)
-        
     }
     
+    // MARK: Touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
         textView.resignFirstResponder()
+    }
+    
+    // MARK: helpers
+    func cityNames(from text: String) -> [String] {
+        return text.trim().components(separatedBy: ",")
     }
     
     /*

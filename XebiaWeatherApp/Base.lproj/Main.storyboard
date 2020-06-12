@@ -298,18 +298,12 @@
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="0y0-yt-kxF">
                                                                                         <rect key="frame" x="101.5" y="0.0" width="55.5" height="17"/>
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="height" constant="17" id="IHe-cg-ts3"/>
-                                                                                        </constraints>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="NaG-Gv-GKn">
                                                                                         <rect key="frame" x="111" y="25" width="36.5" height="17"/>
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="height" constant="17" id="qFU-RV-056"/>
-                                                                                        </constraints>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
@@ -327,16 +321,16 @@
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="zwT-KM-gTI">
-                                                                                        <rect key="frame" x="8" y="100" width="242" height="28"/>
+                                                                                        <rect key="frame" x="110" y="100" width="38" height="28"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="vdn-gy-oWk">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="213" height="28"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="9" height="28"/>
                                                                                                 <fontDescription key="fontDescription" name="WeatherIcons-Regular" family="Weather Icons" pointSize="16"/>
                                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="uuR-BO-dHF">
-                                                                                                <rect key="frame" x="233" y="0.0" width="9" height="28"/>
+                                                                                                <rect key="frame" x="29" y="0.0" width="9" height="28"/>
                                                                                                 <fontDescription key="fontDescription" name="WeatherIcons-Regular" family="Weather Icons" pointSize="16"/>
                                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <nil key="highlightedColor"/>
@@ -350,10 +344,6 @@
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                 </subviews>
-                                                                                <constraints>
-                                                                                    <constraint firstItem="zwT-KM-gTI" firstAttribute="leading" secondItem="rHB-0D-JMC" secondAttribute="leading" constant="8" id="I7f-iT-VYr"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="zwT-KM-gTI" secondAttribute="trailing" constant="8" id="f7c-K8-Iou"/>
-                                                                                </constraints>
                                                                             </stackView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" red="0.078259234513380488" green="0.5578680479230228" blue="0.96130555868148804" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

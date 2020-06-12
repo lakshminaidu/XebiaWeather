@@ -13,7 +13,6 @@ class CityWeatherController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     var viewModel: CityWeatherViewModel!
     var cities = [String]()
-    var weatherData = [WeatherResponseViewModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

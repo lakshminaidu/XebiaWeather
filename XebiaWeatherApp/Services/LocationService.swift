@@ -63,8 +63,7 @@ extension LocationService: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
         // do on error
-        let locationError = AppError(errorCode: .unableToFindLocation)
-        delegate?.locationDidFail(withError: locationError)
+        delegate?.locationDidFail(withError: .unableToFindLocation)
         print("Error finding location: \(error.localizedDescription)")
     }
 }

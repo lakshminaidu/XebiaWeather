@@ -14,7 +14,6 @@ class ForcastViewModel {
     var weatherData = [String: [WeatherResponse]]()
     var title: String = ""
     
-    
     func grouptheData(forecastData: WeatherForcast) -> [String: [WeatherResponse]] {
         var weatherInfo = [String: [WeatherResponse]]()
         self.title = forecastData.city.name + ", " + forecastData.city.country
@@ -29,12 +28,12 @@ class ForcastViewModel {
     }
     
     func fetchWeatherForcast(url: URL, completion: @escaping ((Bool) -> Void)) {
-        WeatherService.Global.fetch(withURL: url) { [weak self] (result: Envelope<WeatherForcast>) in
+        WeatherService.Global.request(withURL: url) { [weak self] (result: Envelope<WeatherForcast>) in
             switch result {
             case .success(let forecastData):
                 self?.weatherData = self?.grouptheData(forecastData: forecastData) ?? [:]
                  completion(true)
-            case.error(_):
+            case.failure(_):
                 completion(false)
             }
         }
